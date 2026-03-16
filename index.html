@@ -91,7 +91,6 @@
 
         /**
          * DATA SOURCE
-         * Content from Old Design, but adjusted for New Design's White/Light Modal context
          */
         const PORTFOLIO_ITEMS = [
           {
@@ -101,8 +100,8 @@
             icon: <Mic size={14} />,
             title: 'AWE EU 2025 Keynote',
             subtitle: 'The Future of the Spatial Web',
-            video: 'Mortenhjemmeside.mp4', // Local video file (updated to mp4)
-            image: 'https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2070&auto=format&fit=crop', // Fallback
+            video: 'Mortenhjemmeside.mp4',
+            image: 'https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2070&auto=format&fit=crop',
             description: "In this talk, we explore how the browser is evolving into a spatial operating system. I demonstrate live prototypes of 'portal' navigation and discuss the implications of WebGPU for the next generation of immersive web experiences.",
             colSpan: 'md:col-span-1 lg:col-span-1'
           },
@@ -147,7 +146,7 @@
             icon: <Globe size={14} />,
             title: 'Morten Haulik udvikler XR-oplevelser på nye måder',
             subtitle: 'NXTWebXR x Herlev Hospital',
-            image: 'thumbnail6.jpg', // Updated thumbnail filename
+            image: 'thumbnail6.jpg',
             description: "Morten Haulik er founder af NXTWebXR og samarbejder med Herlev Hospital om at integrere XR-teknologien i dagligdagen.",
             content: (
                 <div className="space-y-6 text-gray-800 leading-relaxed text-lg">
@@ -177,7 +176,7 @@
             icon: <Camera size={14} />,
             title: 'The Beginning',
             subtitle: 'Oculus DK1 Days (2013)',
-            image: 'https://images.unsplash.com/photo-1592478411213-61535f944806?q=80&w=2070&auto=format&fit=crop', // VR headset placeholder
+            image: 'https://images.unsplash.com/photo-1592478411213-61535f944806?q=80&w=2070&auto=format&fit=crop',
             description: "Found this relic in the closet. The screen door effect was real, but the magic was undeniable. We've come a long way since 720p.",
             markerNote: "Found this in the closet! Can't believe we used to wear these bricks lol #WebVR",
             colSpan: 'md:col-span-1'
@@ -213,10 +212,6 @@
           }
         ];
 
-        /**
-         * BIO ITEM
-         * Dedicated content object for the 'About Morten' popup
-         */
         const BIO_ITEM = {
           id: 'about-morten',
           type: 'blog',
@@ -224,7 +219,7 @@
           icon: <User size={14} />,
           title: 'About Morten',
           subtitle: 'XR Developer, Product Owner & Keynote Speaker',
-          image: 'pjp.jpg', // Reuses the avatar image for the modal cover
+          image: 'pjp.jpg',
           description: "Morten Haulik is an award-winning XR developer, product owner, and keynote speaker based in Copenhagen.",
           content: (
             <div className="space-y-6 text-gray-800 leading-relaxed text-lg">
@@ -235,10 +230,6 @@
             </div>
           )
         };
-
-        /**
-         * UTILITY HOOKS
-         */
 
         const useTilt = (active = true) => {
           const ref = useRef(null);
@@ -286,21 +277,12 @@
           return { ref, position, handleMouseMove, handleMouseLeave };
         };
 
-        /**
-         * SUB-COMPONENTS
-         */
-
         const Background = () => {
           return (
             <div className="fixed inset-0 -z-10 overflow-hidden bg-[#0044FF]">
-              {/* High-End Artsy Blue Background from New Design */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#0033FF] via-[#0022AA] to-[#001188]" />
-              
-              {/* Soft gradients for depth (Artsier look) */}
               <div className="absolute top-0 right-0 w-[80vw] h-[80vw] bg-[#3377FF] opacity-30 rounded-full blur-[120px] mix-blend-screen translate-x-1/2 -translate-y-1/2" />
               <div className="absolute bottom-0 left-0 w-[60vw] h-[60vw] bg-[#6600FF] opacity-20 rounded-full blur-[100px] mix-blend-screen -translate-x-1/4 translate-y-1/4" />
-              
-              {/* Noise Texture for that "High-End" feel */}
               <div 
                 className="absolute inset-0 opacity-[0.06] pointer-events-none mix-blend-overlay"
                 style={{
@@ -324,25 +306,22 @@
                   ref={ref}
                   style={{ transform: `translate(${position.x}px, ${position.y}px)`, transition: 'transform 0.2s ease-out' }}
                 >
-                  {/* Avatar with Thick White Border (New Design) - UPDATED IMAGE */}
                   <div className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-[4px] border-white shadow-2xl relative z-10">
                     <img 
                       src="pjp.jpg" 
                       alt="Morten Haulik" 
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       onError={(e) => {
-                          e.target.src = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2080&auto=format&fit=crop"; // Fallback if local file not found
+                          e.target.src = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2080&auto=format&fit=crop";
                       }}
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                    {/* Title from Old Design | Styling from New Design */}
                   <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-white drop-shadow-md">
                     Morten Haulik <span className="text-[#88CCFF] font-light">| XR</span>
                   </h1>
-                  {/* Subtitle from Old Design */}
                   <p className="text-xl text-blue-100 font-medium tracking-wide">
                       Founder, WebXR Developer & Keynote Speaker
                   </p>
@@ -360,7 +339,6 @@
               </div>
 
               <div className="flex flex-col gap-3 w-full md:w-auto min-w-[240px]">
-                {/* Button 1: Explore NXT (Link) */}
                 <a 
                   href="https://www.nxtwebxr.com" 
                   target="_blank" 
@@ -370,7 +348,6 @@
                     Explore NXT/WebXR
                 </a>
 
-                  {/* Button 2: Book Keynote (Old Content, New Accent Style) */}
                   <button 
                     onClick={onBookKeynote}
                     className="w-full px-6 py-3 bg-gradient-to-r from-[#6600FF] to-[#0044FF] border-2 border-white/30 text-white rounded-full font-bold hover:brightness-110 hover:scale-105 transition-all flex items-center justify-center gap-2 shadow-lg"
@@ -378,7 +355,6 @@
                     <Ticket size={16} /> Book Keynote
                 </button>
 
-                {/* NEW Button 3: About Morten */}
                 <button 
                     onClick={onOpenBio}
                     className="w-full px-6 py-3 bg-white/10 backdrop-blur-md border-2 border-white/40 text-white rounded-full font-bold hover:bg-white/20 hover:scale-105 transition-all flex items-center justify-center gap-2 shadow-sm"
@@ -390,7 +366,6 @@
           );
         };
 
-        // Reusable Tilt Card Wrapper (New Design: Thick White Border)
         const TiltCard = ({ children, className, onClick, style }) => {
           const { ref, transform, shadow, handleMouseMove, handleMouseLeave } = useTilt();
           return (
@@ -407,7 +382,7 @@
               `}
               style={{
                 transform,
-                boxShadow: "0 20px 40px -10px rgba(0,0,0,0.4)", // Stronger shadow for pop
+                boxShadow: "0 20px 40px -10px rgba(0,0,0,0.4)",
                 transformStyle: 'preserve-3d',
                 ...style
               }}
@@ -418,18 +393,21 @@
           );
         };
 
-        // Contact Form (New Design Visuals + Name Field from Old)
+        // Contact Form Updated to trigger MailTo
         const ContactCard = () => {
-          const [formState, setFormState] = useState('idle'); // idle, expanding, sent
+          const [name, setName] = useState('');
+          const [email, setEmail] = useState('');
+          const [message, setMessage] = useState('');
 
           const handleSubmit = (e) => {
             e.preventDefault();
-            setFormState('sent');
-            setTimeout(() => setFormState('idle'), 3000);
+            const subject = encodeURIComponent(`Let's Talk: ${name}`);
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+            window.location.href = `mailto:Morten@nxtwebxr.com?subject=${subject}&body=${body}`;
           };
 
           return (
-            <div className={`relative overflow-hidden rounded-[2.5rem] border-[4px] border-white/90 bg-white/20 backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group ${formState === 'expanding' ? 'row-span-2' : ''}`}>
+            <div className={`relative overflow-hidden rounded-[2.5rem] border-[4px] border-white/90 bg-white/20 backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group`}>
               
               <div className="relative z-10 p-8 h-full flex flex-col">
                 <div className="flex justify-between items-center mb-6">
@@ -440,60 +418,73 @@
                     <h3 className="text-2xl font-bold text-white">Let's Talk</h3>
                   </div>
                   <div className="flex gap-2">
-                      <a href="#" className="p-2 bg-white/20 rounded-full hover:bg-white hover:text-blue-600 transition-colors"><Twitter size={18} /></a>
-                      <a href="#" className="p-2 bg-white/20 rounded-full hover:bg-white hover:text-blue-600 transition-colors"><Linkedin size={18} /></a>
+                      <a href="https://x.com/Haulik" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/20 rounded-full hover:bg-white hover:text-blue-600 transition-colors"><Twitter size={18} /></a>
+                      <a href="https://www.linkedin.com/in/haulik" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/20 rounded-full hover:bg-white hover:text-blue-600 transition-colors"><Linkedin size={18} /></a>
                   </div>
                 </div>
 
-                {formState === 'sent' ? (
-                  <div className="flex-1 flex flex-col items-center justify-center text-center animate-fade-in">
-                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 shadow-lg">
-                      <Send className="text-blue-600" size={28} />
+                <form onSubmit={handleSubmit} className="flex-1 flex flex-col gap-4">
+                    <div className="space-y-4">
+                      <input 
+                        required 
+                        type="text" 
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Name" 
+                        className="w-full bg-blue-900/30 border-2 border-white/30 rounded-2xl p-4 text-white placeholder-blue-200/70 outline-none focus:border-white focus:bg-blue-900/50 transition-all font-medium" 
+                      />
+                      <input 
+                        required 
+                        type="email" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Email Address" 
+                        className="w-full bg-blue-900/30 border-2 border-white/30 rounded-2xl p-4 text-white placeholder-blue-200/70 outline-none focus:border-white focus:bg-blue-900/50 transition-all font-medium" 
+                      />
+                      <textarea 
+                        required 
+                        rows={3} 
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        placeholder="Tell me about your project..." 
+                        className="w-full bg-blue-900/30 border-2 border-white/30 rounded-2xl p-4 text-white placeholder-blue-200/70 outline-none focus:border-white focus:bg-blue-900/50 transition-all resize-none font-medium" 
+                      />
                     </div>
-                    <h4 className="text-2xl font-bold text-white">Sent!</h4>
-                    <p className="text-blue-100">I'll get back to you shortly.</p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="flex-1 flex flex-col gap-4">
-                      <div className="space-y-4">
-                        {/* Re-added Name Field from Old Design */}
-                        <input required type="text" placeholder="Name" className="w-full bg-blue-900/30 border-2 border-white/30 rounded-2xl p-4 text-white placeholder-blue-200/70 outline-none focus:border-white focus:bg-blue-900/50 transition-all font-medium" />
-                        
-                        <input required type="email" placeholder="Email Address" className="w-full bg-blue-900/30 border-2 border-white/30 rounded-2xl p-4 text-white placeholder-blue-200/70 outline-none focus:border-white focus:bg-blue-900/50 transition-all font-medium" />
-                        <textarea required rows={3} placeholder="Tell me about your project..." className="w-full bg-blue-900/30 border-2 border-white/30 rounded-2xl p-4 text-white placeholder-blue-200/70 outline-none focus:border-white focus:bg-blue-900/50 transition-all resize-none font-medium" />
-                      </div>
-                      <button type="submit" className="mt-auto w-full bg-white text-blue-700 font-extrabold py-4 rounded-2xl hover:bg-blue-50 hover:scale-[1.02] transition-all flex items-center justify-center gap-2 shadow-lg">
-                        Send Message 
-                        <Send size={18} />
-                      </button>
-                  </form>
-                )}
+                    <button type="submit" className="mt-auto w-full bg-white text-blue-700 font-extrabold py-4 rounded-2xl hover:bg-blue-50 hover:scale-[1.02] transition-all flex items-center justify-center gap-2 shadow-lg">
+                      Open Email App
+                      <ExternalLink size={18} />
+                    </button>
+                    <p className="text-xs text-blue-200 text-center mt-2">This will draft the message in your default email client.</p>
+                </form>
               </div>
             </div>
           );
         };
 
-        // Keynote Booking Modal (High-End Professional)
+        // Keynote Booking Modal updated to trigger MailTo
         const KeynoteModal = ({ onClose }) => {
           const [audience, setAudience] = useState(500);
-          const [step, setStep] = useState('form'); // form, success
-          const [isSubmitting, setIsSubmitting] = useState(false);
+          const [phone, setPhone] = useState('');
+          const [date1, setDate1] = useState('');
+          const [date2, setDate2] = useState('');
+          const [date3, setDate3] = useState('');
 
           const handleSubmit = (e) => {
             e.preventDefault();
-            setIsSubmitting(true);
-            // Simulate network delay for "professional" feel
-            setTimeout(() => {
-              setIsSubmitting(false);
-              setStep('success');
-            }, 1500);
+            const datesArr = [date1, date2, date3].filter(d => d);
+            const datesString = datesArr.length > 0 ? datesArr.join(', ') : 'TBD';
+            
+            const subject = encodeURIComponent(`Keynote Booking Request - ${audience} People`);
+            const body = encodeURIComponent(`Book Morten Haulik Keynote - Audience ${audience} - ${phone} - Dates: ${datesString}`);
+            
+            window.location.href = `mailto:Morten@nxtwebxr.com?subject=${subject}&body=${body}`;
           };
 
           return (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 animate-fade-in-fast">
               <div className="absolute inset-0 bg-blue-950/80 backdrop-blur-xl" onClick={onClose} />
               
-              <div className="relative w-full max-w-2xl bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border-[6px] border-white animate-scale-up flex flex-col">
+              <div className="relative w-full max-w-2xl bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border-[6px] border-white animate-scale-up flex flex-col max-h-[90vh] overflow-y-auto">
                 <button 
                   onClick={onClose}
                   className="absolute top-6 right-6 z-50 p-2 bg-gray-100 hover:bg-gray-200 rounded-full text-gray-600 transition-colors"
@@ -501,119 +492,109 @@
                   <X size={24} />
                 </button>
 
-                {step === 'success' ? (
-                  <div className="flex flex-col items-center justify-center text-center p-12 md:p-16 h-full min-h-[500px]">
-                    <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-8 animate-scale-up">
-                      <CheckCircle2 className="text-green-600 w-12 h-12" />
-                    </div>
-                    <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-4">Inquiry Received</h2>
-                    <div className="space-y-4 max-w-md mx-auto text-lg text-slate-600 leading-relaxed">
-                      <p>Thank you for your interest in booking Morten Haulik.</p>
-                      <p className="font-medium text-blue-800 bg-blue-50 p-4 rounded-xl border border-blue-100">
-                        A representative will be in touch with you within 24-48 hours regarding your event details and availability.
-                      </p>
-                    </div>
-                    <button 
-                      onClick={onClose}
-                      className="mt-10 px-8 py-3 bg-gray-900 text-white font-bold rounded-full hover:bg-gray-800 transition-all shadow-lg"
-                    >
-                      Close Window
-                    </button>
-                  </div>
-                ) : (
-                  <div className="p-8 md:p-12">
-                    <div className="mb-8">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="p-2 bg-blue-100 text-blue-700 rounded-lg">
-                          <Ticket size={20} />
-                        </div>
-                        <span className="text-sm font-bold text-blue-600 uppercase tracking-widest">Official Booking</span>
+                <div className="p-8 md:p-12">
+                  <div className="mb-8">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="p-2 bg-blue-100 text-blue-700 rounded-lg">
+                        <Ticket size={20} />
                       </div>
-                      <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 tracking-tight">Keynote Inquiry</h2>
-                      <p className="text-slate-500 mt-2 text-lg">Available for conferences, corporate summits, and private workshops.</p>
+                      <span className="text-sm font-bold text-blue-600 uppercase tracking-widest">Official Booking</span>
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 tracking-tight">Keynote Inquiry</h2>
+                    <p className="text-slate-500 mt-2 text-lg">Available for conferences, corporate summits, and private workshops.</p>
+                  </div>
+
+                  <form onSubmit={handleSubmit} className="space-y-8">
+                    {/* Audience Slider */}
+                    <div className="space-y-4 bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                      <div className="flex justify-between items-end">
+                        <label className="text-sm font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                          <Users size={16} /> Audience Size
+                        </label>
+                        <span className="text-2xl font-bold text-blue-600 tabular-nums">
+                          {audience === 5000 ? '5,000+' : audience.toLocaleString()}
+                          <span className="text-sm font-medium text-slate-400 ml-1">people</span>
+                        </span>
+                      </div>
+                      <input 
+                        type="range" 
+                        min="5" 
+                        max="5000" 
+                        step="5"
+                        value={audience} 
+                        onChange={(e) => setAudience(Number(e.target.value))}
+                        className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600 hover:accent-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30"
+                      />
+                      <div className="flex justify-between text-xs font-semibold text-slate-400 px-1">
+                        <span>5</span>
+                        <span>1K</span>
+                        <span>2.5K</span>
+                        <span>5K+</span>
+                      </div>
+                      
+                      {/* Pick Dates Section inserted below Audience */}
+                      <div className="pt-4 border-t border-slate-200 mt-4 space-y-3">
+                         <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                            <Calendar size={16} /> Pick Dates
+                            <span className="text-xs font-normal text-slate-500">(You can select up to three dates)</span>
+                         </label>
+                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <input 
+                              type="date" 
+                              value={date1}
+                              onChange={e => setDate1(e.target.value)}
+                              className="w-full bg-white border-2 border-slate-200 rounded-xl py-2 px-3 text-sm text-slate-800 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all font-medium"
+                            />
+                            <input 
+                              type="date" 
+                              value={date2}
+                              onChange={e => setDate2(e.target.value)}
+                              className="w-full bg-white border-2 border-slate-200 rounded-xl py-2 px-3 text-sm text-slate-800 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all font-medium"
+                            />
+                            <input 
+                              type="date" 
+                              value={date3}
+                              onChange={e => setDate3(e.target.value)}
+                              className="w-full bg-white border-2 border-slate-200 rounded-xl py-2 px-3 text-sm text-slate-800 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all font-medium"
+                            />
+                         </div>
+                      </div>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-8">
-                      {/* Audience Slider */}
-                      <div className="space-y-4 bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                        <div className="flex justify-between items-end">
-                          <label className="text-sm font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
-                            <Users size={16} /> Audience Size
-                          </label>
-                          <span className="text-2xl font-bold text-blue-600 tabular-nums">
-                            {audience === 5000 ? '5,000+' : audience.toLocaleString()}
-                            <span className="text-sm font-medium text-slate-400 ml-1">people</span>
-                          </span>
-                        </div>
+                    {/* Contact Fields */}
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-slate-700 ml-1">Phone Number</label>
+                      <div className="relative">
+                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                         <input 
-                          type="range" 
-                          min="5" 
-                          max="5000" 
-                          step="5"
-                          value={audience} 
-                          onChange={(e) => setAudience(Number(e.target.value))}
-                          className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600 hover:accent-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30"
+                          required 
+                          type="tel" 
+                          value={phone}
+                          onChange={e => setPhone(e.target.value)}
+                          placeholder="+45 12 34 56 78" 
+                          className="w-full bg-white border-2 border-slate-200 rounded-xl py-3 pl-12 pr-4 text-slate-800 placeholder-slate-300 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all font-medium" 
                         />
-                        <div className="flex justify-between text-xs font-semibold text-slate-400 px-1">
-                          <span>5</span>
-                          <span>1K</span>
-                          <span>2.5K</span>
-                          <span>5K+</span>
-                        </div>
                       </div>
+                    </div>
 
-                      {/* Contact Fields */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <label className="text-sm font-bold text-slate-700 ml-1">Email Address</label>
-                          <div className="relative">
-                            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                            <input 
-                              required 
-                              type="email" 
-                              placeholder="client@company.com" 
-                              className="w-full bg-white border-2 border-slate-200 rounded-xl py-3 pl-12 pr-4 text-slate-800 placeholder-slate-300 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all font-medium" 
-                            />
-                          </div>
-                        </div>
-                        <div className="space-y-2">
-                          <label className="text-sm font-bold text-slate-700 ml-1">Phone Number</label>
-                          <div className="relative">
-                            <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                            <input 
-                              required 
-                              type="tel" 
-                              placeholder="+1 (555) 000-0000" 
-                              className="w-full bg-white border-2 border-slate-200 rounded-xl py-3 pl-12 pr-4 text-slate-800 placeholder-slate-300 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all font-medium" 
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Submit Action */}
-                      <div className="pt-4 flex items-center justify-between border-t border-slate-100">
-                        <div className="flex items-center gap-2 text-xs font-medium text-slate-400">
-                          <Building2 size={14} />
-                          <span>Representation: United Talent Agency</span>
-                        </div>
-                        <button 
-                          type="submit" 
-                          disabled={isSubmitting}
-                          className="px-8 py-4 bg-gradient-to-r from-blue-700 to-blue-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-blue-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
-                        >
-                          {isSubmitting ? 'Sending Request...' : 'Request Availability'}
-                          {!isSubmitting && <ArrowRight size={18} />}
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                )}
+                    {/* Submit Action */}
+                    <div className="pt-4 flex flex-col items-center border-t border-slate-100">
+                      <button 
+                        type="submit" 
+                        className="w-full px-8 py-4 bg-gradient-to-r from-blue-700 to-blue-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-blue-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex justify-center items-center gap-2"
+                      >
+                        Open Email to Request
+                        <ExternalLink size={18} />
+                      </button>
+                      <p className="text-xs text-slate-500 mt-3 text-center">This will open your default email app with the details filled out.</p>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           );
         };
 
-        // The Expanded Modal (New Design: White Modal, but adaptable to old content)
         const ExpandedCard = ({ item, onClose }) => {
           if (!item) return null;
           const isPolaroid = item.type === 'image';
@@ -622,7 +603,6 @@
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 animate-fade-in-fast">
               <div className="absolute inset-0 bg-blue-950/80 backdrop-blur-xl" onClick={onClose} />
               
-              {/* CASE 1: POLAROID STYLE (Images) */}
               {isPolaroid ? (
                 <div className="relative animate-wiggle-float origin-center">
                     <button 
@@ -643,7 +623,6 @@
                     </div>
                 </div>
               ) : (
-              /* CASE 2: STANDARD CONTENT MODAL (New Design: White BG) */
               <div className="relative w-full max-w-5xl max-h-[90vh] bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col md:flex-row animate-scale-up border-[6px] border-white">
                 <button 
                   onClick={onClose}
@@ -652,7 +631,6 @@
                   <X size={24} />
                 </button>
 
-                {/* Media Section */}
                 <div className={`relative ${item.type === 'project' ? 'md:w-1/2' : 'md:w-5/12'} bg-slate-100 h-64 md:h-auto overflow-hidden`}>
                    {item.type === 'video' ? (
                      <div className="w-full h-full flex items-center justify-center relative group cursor-pointer bg-black">
@@ -671,7 +649,6 @@
                         alt={item.title} 
                         className="w-full h-full object-cover" 
                         onError={(e) => {
-                            // Fallback if local image missing in modal
                             if (item.image && item.image.includes('thumbnail6.jpg')) {
                                 e.target.src = "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop";
                             } else if (item.image && item.image.includes('pjp.jpg')) {
@@ -680,7 +657,6 @@
                         }}
                     />
                    )}
-                   {/* Tag Overlay */}
                    <div className="absolute top-6 left-6">
                       <span className="flex items-center gap-2 px-4 py-1.5 bg-white rounded-full text-xs font-bold text-blue-900 uppercase tracking-wider shadow-lg">
                         {item.icon} {item.tag}
@@ -688,7 +664,6 @@
                    </div>
                 </div>
 
-                {/* Content Section - Dark text for white background */}
                 <div className={`flex-1 p-8 md:p-12 flex flex-col overflow-y-auto ${item.type === 'project' ? 'md:w-1/2' : 'md:w-7/12'} scrollbar-hide`}>
                   <div className="mb-8">
                     <h2 className="text-4xl md:text-5xl font-extrabold text-blue-900 mb-3 leading-tight tracking-tight">{item.title}</h2>
@@ -705,7 +680,6 @@
                         <span>•</span>
                         <span>5 min read</span>
                       </div>
-                      {/* Only show View Full if it is an external link */}
                       {item.externalLink && (
                         <a href={item.externalLink} target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-700 transition-colors flex items-center gap-2 shadow-lg">
                           View Source <ExternalLink size={16} />
@@ -719,14 +693,12 @@
           );
         };
 
-        // Content Card Component (New Design Style)
         const ContentCard = ({ item, onClick }) => {
           return (
             <TiltCard 
               onClick={() => onClick(item)} 
               className={`${item.colSpan} cursor-pointer group min-h-[320px] flex flex-col`}
             >
-              {/* Background Image / Gradient / Video */}
               {(item.image || item.video) && (
                 <div className="absolute inset-0 z-0">
                   {item.video ? (
@@ -744,24 +716,20 @@
                       alt={item.title} 
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       onError={(e) => {
-                          // Fallback if local image missing in card
                           if (item.image.includes('thumbnail6.jpg')) {
                               e.target.src = "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop";
                           }
                       }}
                     />
                   )}
-                  {/* Stronger overlay for legibility */}
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-900/40 to-transparent opacity-80" />
                 </div>
               )}
               
-              {/* Fallback for text-only blog posts - now a nice gradient */}
               {!(item.image || item.video) && (
                 <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-white/5" />
               )}
 
-              {/* Top Tag */}
               <div className="absolute top-5 left-5 z-20">
                 <div className={`
                   flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/30 text-xs font-bold uppercase tracking-wider shadow-lg backdrop-blur-md
@@ -773,7 +741,6 @@
                 </div>
               </div>
 
-              {/* Content */}
               <div className="relative z-10 p-7 mt-auto">
                 <h3 className={`font-bold text-white mb-2 leading-[1.1] drop-shadow-md ${item.colSpan.includes('col-span-2') ? 'text-4xl' : 'text-2xl'}`}>
                   {item.title}
@@ -790,7 +757,6 @@
           );
         };
 
-        // MAIN APP
         const App = () => {
           const [selectedItem, setSelectedItem] = useState(null);
           const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -806,7 +772,6 @@
           return (
             <div className="relative min-h-screen text-slate-200 font-sans selection:bg-white selection:text-blue-600 pb-20">
               <style>{`
-                /* Font imports handled in HTML Head for better performance, but retained logic here just in case */
                 body { font-family: 'Plus Jakarta Sans', sans-serif; }
                 .font-handwriting { font-family: 'Permanent Marker', cursive; }
                 
@@ -828,7 +793,6 @@
                 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
                 @keyframes scaleUp { from { opacity: 0; transform: scale(0.95) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 
-                /* Masonry Grid Hacks */
                 .masonry-grid {
                   display: grid;
                   grid-template-columns: repeat(1, 1fr);
@@ -844,7 +808,6 @@
 
               <Background />
               
-              {/* Pass the new open event down to the header component */}
               <Header 
                 onBookKeynote={() => setIsBookingOpen(true)} 
                 onOpenBio={() => setSelectedItem(BIO_ITEM)} 
@@ -852,8 +815,6 @@
 
               <main className="max-w-7xl mx-auto px-6 md:px-10 pb-24">
                 
-                {/* --- SEO / AI CRAWLER HIDDEN TEXT --- */}
-                {/* This text is invisible to screen users but immediately indexable by bots parsing the DOM. */}
                 <div className="sr-only">
                   Morten Haulik is an award-winning XR developer, product owner, and keynote speaker based in Copenhagen. Over a decade ago, at age 22, Morten left his Information Science studies at the University of Copenhagen to join Khora Virtual Reality—the first Nordic XR studio—full-time. Since then, he has facilitated over 100 XR workshops, shipped multiple high-impact spatial computing products, and delivered keynote speeches to audiences of up to 2,000+ people.
                   Over the past five years, Morten has crafted immersive WebXR and VR/AR experiences for some of the world's leading global brands and cultural institutions. His award-winning work is used daily across the globe, transforming workflows in hospitals, enhancing museum exhibits, and entertaining VR users at home.
@@ -882,7 +843,6 @@
                 <p>© 2026 Morten Haulik. All rights reserved.</p>
               </footer>
 
-              {/* The Overlay Modals */}
               {selectedItem && (
                 <ExpandedCard item={selectedItem} onClose={() => setSelectedItem(null)} />
               )}
@@ -894,7 +854,6 @@
           );
         };
 
-        // --- MOUNT THE APP ---
         const rootElement = document.getElementById('root');
         const root = createRoot(rootElement);
         root.render(<App />);
